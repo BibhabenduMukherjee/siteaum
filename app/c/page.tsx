@@ -1,6 +1,6 @@
 export default async function AboutPage() {
     return (
-        <div className="flex w-[380px] md:w-[800px] justify-center mx-auto  ">
+        <div className="flex w-[345px] md:w-[800px] justify-center mx-auto  ">
             <article className="prose  lg:prose-lg">
                 <h1></h1>
                 <p className="dark:text-white/75 text-black" style={{ textAlign: "justify" }}>
