@@ -1,8 +1,14 @@
 import { build } from "velite";
 
 /** @type {import('next').NextConfig} */
+// This configuration example applies to frameworks like Next.js or Gatsby
+
+
+
 export default {
   // othor next config here...
+  
+
   webpack: (config) => {
     config.plugins.push(new VeliteWebpackPlugin());
     return config;
