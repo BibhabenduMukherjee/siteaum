@@ -1112,9 +1112,6 @@ video {
 .ml-auto {
   margin-left: auto;
 }
-.mr-2 {
-  margin-right: 0.5rem;
-}
 .mr-6 {
   margin-right: 1.5rem;
 }
@@ -1254,6 +1251,9 @@ video {
 .max-w-4xl {
   max-width: 56rem;
 }
+.max-w-5xl {
+  max-width: 64rem;
+}
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -1265,12 +1265,6 @@ video {
 }
 .max-w-screen-2xl {
   max-width: 1536px;
-}
-.max-w-3xl {
-  max-width: 48rem;
-}
-.max-w-5xl {
-  max-width: 64rem;
 }
 .flex-1 {
   flex: 1 1 0%;
