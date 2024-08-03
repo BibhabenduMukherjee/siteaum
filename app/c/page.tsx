@@ -1,7 +1,7 @@
 export default async function AboutPage() {
     return (
-        <div className="flex w-[345px] md:w-[800px] justify-center mx-auto  ">
-            <article className="prose  lg:prose-lg">
+        <div className="flex w-[325px] md:w-[800px] justify-center mx-auto  ">
+            <article className="prose text-md  lg:prose-lg">
                 <h1></h1>
                 <p className="dark:text-white/75 text-black" style={{ textAlign: "justify" }}>
                     Welcome to my blog site, {"  "} a space dedicated to the exploration and sharing of knowledge. The content presented here is intended purely for educational and informational purposes. As a passionate learner and teacher, I aim to share insights and discoveries that can enrich the understanding of those who visit.

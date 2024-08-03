@@ -1,0 +1,126 @@
+---
+title: Behind the Scenes How DNS Translates Domains into Destinations (Part 1)
+description: "Discover the hidden workings of the Domain Name System (DNS) as it seamlessly translates human-friendly domain names into machine-readable IP addresses, enabling smooth navigation and access to websites across the internet's vast digital landscape."
+date: 2024-08-03
+tags: ["Network","DNS"]
+readtime: 12
+published: true
+---
+
+
+
+
+
+## Introduction
+
+
+{/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
+  <img src="/1.png" alt="tt" style={{ width: '100%', height: '60%', objectFit: 'cover' }} />
+</div> */}
+Imagine effortlessly searching for your favorite recipes, 
+watching the latest videos, or booking a vacation with just a 
+few keystrokes. You never worry about the complex web of servers and
+codes working behind the scenes. This seamless experience is powered 
+by the Domain Name System (DNS), the unsung hero that translates your 
+simple domain searches into precise destinations, making the internet 
+user-friendly and accessible.
+
+## What DNS is for?
+
+DNS, or Domain Name System, is essential for translating user-friendly
+domain names like `example.com` into IP addresses like `192.0.2.1`.
+This process enables your browser to locate and connect to the correct
+server hosting the website you want to visit. Essentially, DNS acts as
+the internet's directory, allowing users to navigate the web easily
+without needing to remember complex numeric addresses.
+
+It's like dns-server are server's that are reponsible to locate the destination 
+suppose you type `www.example.com` in your browser, what happens you know a  `dns-query` is being made
+by the browser that goes to the dns server here dns-server actually use 
+to map the ip and the domain that you are looking for, Now you might have these
+follow up questions. 
+
+> 1. Where these DNS server's are?
+
+> 2. How these possible for a DNS server to locate so many domains?
+
+
+DNS servers are distributed globally across various locations based on their working behavior. Here’s a brief overview of where they are:
+
+- **Root DNS Servers**: There are 13 root servers 
+(designated A to M) distributed worldwide. 
+These servers are managed by various organizations 
+and provide the initial step in the DNS resolution process, 
+directing queries to the appropriate Top-Level Domain (TLD) servers.
+
+- **TLD DNS Servers**: These servers manage domain extensions like `.com`, `.org`, or `.net`. They are distributed globally and handle requests for domains within their respecti
+
+- **Authoritative DNS Servers**: These servers are operated by domain registrars, web hosting companies, or DNS service providers. They store DNS records for specific domains and provide the final resolution for queries about those domains.
+
+
+DNS servers can efficiently locate and resolve millions of domains through a hierarchical and distributed system. Here’s how it works:
+
+- **Hierarchical Structure:** DNS operates in a hierarchical manner:
+  - **Root Level:** The root servers direct queries to the appropriate TLD servers.
+  - **TLD Level:** TLD servers manage domains under specific extensions (e.g., .com, .org) and direct queries to the authoritative servers for those domains.
+  - **Authoritative Level:** Authoritative DNS servers contain the DNS records for individual domains and provide the final resolution.
+
+- **Caching:** DNS servers use caching to store the results of recent queries:
+  - **Recursive DNS Servers:**  They cache DNS query results to speed up future lookups for the same domains.
+  - **Authoritative DNS Servers:** They cache responses to reduce the load on their databases and improve query efficiency.
+
+
+## How these DNS loopup works?
+
+ - You type example.com into your browser and hit Enter.
+
+ - Your computer first checks its local DNS cache to see if it has a recent IP address for example.com. If not, it sends a query to a DNS server.
+
+ - If not found in the previous step your query goes to a recursive DNS server, usually provided by your ISP. This server handles the process of finding the IP address for example.com.
+
+ - If not found in the previous step then the recursive DNS server first asks a root DNS server . The root server doesn't know the IP address but tells the recursive server where to find the .com TLD servers.
+
+ - Next, the recursive DNS server queries a .com TLD server. This server doesn't know the exact IP but directs the recursive server to the authoritative DNS server for `example.com`.
+
+- Finally, the recursive DNS server contacts the authoritative DNS server for example.com. This server has the IP address and responds with it.
+
+
+## DNS Records Example
+
+- **A Record:**  The A record (Address Record) maps the domain name to an IP address.
+  - For `www.example.com`, the A record might look like this
+
+  ```mdx
+  > www.example.com. IN A 192.0.2.1
+  ```
+  This record tells the authoritative server that `www.example.com` should resolve to the IP address 192.0.2.1.
+- **CNAME Record:**  Used to alias one domain name to another. For example:
+  ```mdx
+  > mail.example.com. IN CNAME www.example.com.
+  ```
+  This means `mail.example.com` points to `www.example.com`
+
+- **MX Record:** Specifies the mail server for handling emails for the domain.
+  ```mdx
+  > example.com. IN MX 10 mail.example.com.
+  ```
+  This indicates that mail for `example.com` should be routed to `mail.example.com`
+
+
+- **TXT Record:** Provides text information to sources outside your domain, often used for verification.
+  ```mdx
+  > example.com. IN TXT "v=spf1 include:_spf.example.com ~all"
+  ```
+  This indicates that mail for `example.com` should be routed to `mail.example.com`
+
+
+
+## Practical View
+  
+  <div style= {{"position": "relative", "width": "100%", "height": 0, paddingBottom: "56.25%", overflow: "hidden"}}>
+  <iframe width="760"  style= {{ position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%"}} height="315" src="https://www.youtube.com/embed/lxZVV-MuM2w?si=r98JBOsVu8dXNZVH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>

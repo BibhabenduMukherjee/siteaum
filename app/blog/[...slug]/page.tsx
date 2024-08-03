@@ -72,7 +72,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <article className="container py-6 prose dark:prose-invert max-w-4xl mx-auto">
+    <article style={{ textAlign: "justify" }} className="container  text-[17px] py-6 prose dark:prose-invert max-w-5xl mx-auto">
       <h1 className="mb-2">{post.title}</h1>
       <div className="flex items-center gap-2 mb-2">
         {post.tags?.map((tag) => (
@@ -91,7 +91,7 @@ export default async function PostPage({ params }: PostPageProps) {
         
       ) : null}
       <hr className="my-4" />
-      <MDXContent code={post.body} />
+      <MDXContent code={post.body}  />
     </article>
   );
 }
