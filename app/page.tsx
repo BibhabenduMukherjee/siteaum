@@ -13,7 +13,7 @@ export default function Home() {
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:mt-10 lg:py-32">
         <div className="container flex flex-col gap-4 text-center">
           <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-balance">
-            Hello, everyone 
+          <span className="dark:text-green-400 text-green-500">   Welcome </span> to <span className="dark:text-orange-400 text-orange-500">Codeaum <span className="dark:text-orange-400 text-orange-500">(ॐ)</span></span>
           </h1>
            <A/>
       
