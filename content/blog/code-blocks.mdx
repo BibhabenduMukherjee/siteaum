@@ -1,107 +1,184 @@
 ---
-title: Lets see what we can do with rehype pretty code
-description: Syntax highlighting, line numbers, line highlights, word highlights
+title: Balancing the Load Secrets to Scalable Web Applications
+description: Discover the secrets behind scalable web applications in "Balancing the Load Secrets to Scalable Web Applications." This guide delves into the world of load balancing, revealing how it ensures seamless performance and high availability for major web platforms. Learn about the algorithms and techniques that distribute traffic efficiently across servers, keeping your applications responsive and reliable under heavy demand.
 date: 2024-03-04
-tags: ["code", "rehype pretty", "mdx"]
-published: false
+readtime: 10
+tags: ["system design"]
+published: true
 ---
 
-[`rehype-pretty-code`](https://github.com/atomiks/rehype-pretty-code) is a Rehype plugin powered by the
-[`shiki`](https://github.com/shikijs/shiki) syntax highlighter that provides beautiful code blocks for Markdown or MDX. It works on both the server at build-time (avoiding runtime syntax highlighting) and on the client for dynamic highlighting.
 
-## Editor-Grade Highlighting
+## What is Load Balancer ? 
 
-<span className="mix-blend-plus-lighter text-zinc-400/80">
-  Enjoy the accuracy and granularity of VS Code's syntax highlighting engine and
-  the popularity of its themes ecosystem — use any VS Code theme you want!
-</span>
+A load balancer is a critical component in modern web architecture, designed to efficiently
+distribute incoming network traffic across multiple servers. Its primary goal is to ensure
+that no single server becomes overwhelmed with too many requests, which can lead to slow
+response times or even server crashes.
 
-## Line Numbers and Line Highlighting
+### Load balancing algorithms are generally 2 types 
 
-Draw attention to a particular line of code.
+ - **Static** 
+     → Static load balancing algorithms distribute tasks across servers based on predefined rules,
+       without considering the current server load or real-time performance metrics.
+ - **Dynamic**
+     → Dynamic load balancing algorithms adapt to real-time conditions by continuously
+       monitoring server performance metrics such as CPU usage, memory load, and network traffic. 
 
-```js {4} showLineNumbers
-import { useFloating } from "@floating-ui/react";
 
-function MyComponent() {
-  const { refs, floatingStyles } = useFloating();
+## Key Differences
 
-  return (
-    <>
-      <div ref={refs.setReference} />
-      <div ref={refs.setFloating} style={floatingStyles} />
-    </>
-  );
-}
-```
+| Aspect         | Static Load Balancing	       | Dynamic Load Balancing|
+|:----------------|:-----------|:-----------|
+| **Decision Making** | Predefined and does not change during execution        | Adjusts based on current conditions and performance    |
+| **Flexibility** | Less flexible, as it doesn't adapt to changes	        | Highly flexible, adapts to real-time server loads    |
+| **Performance** | Does not consider real-time performance metrics	        | Considers metrics like CPU usage, memory load, etc.   |
+| **Complexity** | Simpler to implement	        | More complex due to continuous monitoring   |
+| **Examples** | Round-robin, Hash-based	        | Least Connections, Weighted Response Time
+   |
 
-## Word Highlighting
 
-Draw attention to a particular word or series of characters.
 
-```js /floatingStyles/
-import { useFloating } from "@floating-ui/react";
+### Some important type of Load Balancing Algorithm:-
 
-function MyComponent() {
-  const { refs, floatingStyles } = useFloating();
+<div style={{display: "flex" , justifyContent : "center"}}>
+<img  style={{width : "50%",height:"40%"}} src="https://cdn.sanity.io/images/l2tpt56d/production/6d95efa1b9164426bfdbc07be2e80de7bb65fecd-878x962.png" />
+</div>
 
-  return (
-    <>
-      <div ref={refs.setReference} />
-      <div ref={refs.setFloating} style={floatingStyles} />
-    </>
-  );
-}
-```
 
-## ANSI Highlighting
+## **Static Type Algorithm**
 
-```ansi
-[0;36m  vite v5.0.0[0;32m dev server running at:[0m
+## Round Robin 
 
-  > Local: [0;36mhttp://localhost:[0;36;1m3000[0;36m/[0m
-  > Network: [0;2muse `--host` to expose[0m
 
-  [0;36mready in 125ms.[0m
+Round-robin is a simple and widely used load-balancing algorithm that distributes incoming requests
+evenly across a group of servers. In this method, the load balancer assigns each request to the next
+server in a sequential order, looping back to the first server after reaching the last.
 
-[0;2m8:38:02 PM[0m [0;36;1m[vite][0m [0;32mhmr update [0;2m/src/App.jsx
-```
 
-Inline ANSI: `> Local: [0;36mhttp://localhost:[0;36;1m3000[0;36m/[0m{:ansi}`
+For example, consider a web application with three servers: A, B, and C. 
+The round-robin algorithm assigns the first request to server A, the second 
+to server B, the third to server C, and the fourth back to server A, continuing this pattern for subsequent requests.
 
----
+### Advantage
 
-### Kitchen Sink Meta Strings
+ - 1. **Simplicity-** The round-robin algorithm is easy to implement and understand, requiring minimal configuration and no real-time monitoring of server performance.
+ - 2. **Fairness-** It ensures equal distribution of requests across servers, making it suitable for environments with uniform server capacities and workloads.
 
-```js showLineNumbers {2-4} title="isEven.js" /console/ caption="Im a caption"
-function isEven(number) {
-  if (number === 1) {
-    return false;
-  } else if (number === 2) {
-    return true;
-  } else if (number === 3) {
-    return false;
-  } else if (number === 4) {
-    return true;
-  } else if (number === 5) {
-    return false;
-  } else if (number === 6) {
-    return true;
-  } else if (number === 7) {
-    return false;
-  } else if (number === 8) {
-    return true;
-  } else if (number === 9) {
-    return false;
-  } else if (number === 10) {
-    return true;
-  } else {
-    return "Number is not between 1 and 10.";
-  }
-}
+### Limitation
+ - 1. **Uneven Load Distribution -** Round-robin does not consider the current load or processing power of each server, which can lead to uneven distribution.
+ - 2. **Lack of Fault Tolerance -** If a server goes down, the basic round-robin algorithm continues to route requests to it unless additional mechanisms are in place to detect and bypass failed servers.
 
-// Example usage:
-console.log(isEven(3)); // Should return false
-console.log(isEven(4)); // Should return true
-console.log(isEven(11)); // Should return "Number is not between 1 and 10."
-```
+<div style={{display: "flex" , justifyContent : "center"}}>
+<img  style={{width : "70%",height:"40%"}} src="https://cdn.sanity.io/images/l2tpt56d/production/8e63de88e022b09c69a918f1c1adc7297ecbcbc0-1384x772.png" />
+</div>
+
+
+## Sticky Round Robin 
+
+Sticky Round Robin is a variation of the round-robin load-balancing
+algorithm that ensures a users requests are consistently directed to
+the same server during their session. This is particularly useful for applications that maintain session state on individual servers.
+
+
+For example, consider an e-commerce site with three servers: A, B, and C.
+ A new visitor might be assigned to server A for their first request. 
+ With sticky round-robin, all subsequent requests from that user during the session will also be sent to server A, preserving session continuity.
+
+### Advantage
+
+ - 1. **Session Continuity-** Sticky round-robin maintains user session consistency by directing all requests from a user to the same server, ensuring a seamless user experience.
+ - 2. **Stateful Applications-** It is ideal for applications that store session-specific data on individual servers, as it prevents session data from being scattered across multiple servers.
+
+
+### Limitation
+ - 1. **Uneven Load Distribution -**  Sticky round-robin can lead to uneven load distribution if certain sessions are more resource-intensive, causing some servers to become overloaded while others remain underutilized.
+ - 2. **Scalability Issues -** Adding or removing servers can disrupt the assignment of sessions.
+
+<div style={{display: "flex" , justifyContent : "center"}}>
+<img  style={{width : "70%",height:"40%"}} src="https://cdn.sanity.io/images/l2tpt56d/production/d8ea313509f7b3b273507296553a457d7d29552d-1322x816.png" />
+</div>
+
+
+## Weighted Round Robin
+
+Weighted Round Robin is an enhanced version of the round-robin load-balancing
+algorithm that assigns different weights to servers based on their capacity
+and performance. Each server is given a weight, reflecting its processing power or resource availability, allowing more capable servers to handle a 
+larger share of requests.
+
+For example, if there are three servers with weights 3, 2, and 1, respectively, the server with weight 3 will receive three requests for every 
+two and one that the others receive. This approach ensures a more efficient and balanced distribution of workloads.
+
+
+### Advantage
+
+ - 1. **Resource Utilization-** Weighted round-robin allocates more requests to servers with higher capacity, optimizing resource utilization by leveraging each server's strengths.
+ - 2. **Customizable Distribution-** Administrators can tailor request distribution based on server capabilities, improving performance by assigning more traffic to more powerful servers.
+
+
+### Limitation 
+- 1. **Complex Configuration-** - Assigning appropriate weights to servers requires careful analysis and manual configuration which can be complex and time-consuming.
+- 2. **Resource Changes-** Weighted round robin does not automatically adjust to real-time changes in server performance or availability, potentially leading to inefficiencies if server loads fluctuate
+
+<div style={{display: "flex" , justifyContent : "center"}}>
+<img  style={{width : "70%",height:"40%"}} src="https://cdn.sanity.io/images/l2tpt56d/production/22acc8dac0a68523f13d94c28df54edac4b73386-1434x886.png" />
+</div>
+
+## IP/URL
+
+IP/URL hash load balancing is an algorithm that directs incoming requests to servers based on a hash of the client's IP address or the requested URL. This method creates a consistent hash value, which is then mapped to a specific server. 
+
+
+
+## **Dynamic Type Algorithm**
+
+## Least Connection 
+
+The Least Connections load balancing algorithm distributes incoming requests to the server with the fewest active connections 
+at the time of the request. This approach ensures that each server handles an 
+appropriate amount of traffic based on its current load, making it particularly effective for environments where requests have varying processing times and resource requirements.
+
+For instance, if three servers are running and one server has significantly fewer connections, the next incoming request will be routed to that server, ensuring efficient handling and reduced latency.
+
+
+### Advantages:
+
+- 1. **Dynamic Load Distribution-** Least connection efficiently balances traffic by considering real-time server loads, directing new requests to the least busy servers.
+
+- 2. **Optimized Resource Usage-** By minimizing server congestion, it enhances response times and overall application performance.
+
+### Limitations:
+
+- 1. **Initial Connection Surge-** New servers can be overwhelmed if they start with zero connections, leading to an uneven distribution initially.
+
+- 2. **Complexity-** Requires constant monitoring of active connections, increasing computational overhead and complexity compared to simpler algorithms.
+
+<div style={{display: "flex" , justifyContent : "center"}}>
+<img  style={{width : "70%",height:"40%"}} src="https://cdn.sanity.io/images/l2tpt56d/production/e97f72e62610c7866486e0a899ad1932e14ed61c-1178x796.png" />
+</div>
+
+## Least Time
+
+The Least Time load balancing algorithm routes incoming requests to the server with the lowest estimated response time. This estimation considers both the server's active connection count and the average response time of recent requests.
+
+For example, if two servers have similar connection counts, but one server has a faster average response time, the next request will be directed to the quicker server.
+
+
+However, it requires constant monitoring which  incurs significant overhead  and introduces complexity
+
+<div style={{display: "flex" , justifyContent : "center"}}>
+<img  style={{width : "70%",height:"40%"}} src="https://cdn.sanity.io/images/l2tpt56d/production/3ced0b0de7fdc7e3620c52c85bce872a287d8f44-1230x800.png" />
+</div>
+
+
+### Advantages:
+
+- 1. **Optimized Response Times-** Least time prioritizes routing requests to servers with the fastest response times, improving overall user experience and reducing latency.
+
+- 2. **Efficient Load Balancing-** By considering current loads and response metrics, it dynamically balances traffic to prevent server overloading.
+
+### Limitations:
+
+- 1. **Resource Intensive-** Requires continuous monitoring of server performance and response times, increasing computational complexity and overhead.
+
+- 2. **Variable Metrics-** Fluctuations in response times can lead to inconsistent routing decisions, potentially affecting load distribution stability.

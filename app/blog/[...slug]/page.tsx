@@ -72,8 +72,8 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <article style={{ textAlign: "justify" }} className="container  text-[17px] py-6 prose dark:prose-invert max-w-5xl mx-auto">
-      <h1 className="mb-2">{post.title}</h1>
+    <article style={{ textAlign: "left" }} className="container  text-[17px] py-6 prose dark:prose-invert max-w-5xl mx-auto">
+      <p className="mb-2 text-3xl font-semibold">{post.title}</p>
       <div className="flex items-center gap-2 mb-2">
         {post.tags?.map((tag) => (
           <Tag tag={tag} key={tag} />
@@ -85,7 +85,7 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
       {post.description ? (
         <div className="flex space-x-2">
-<p className="text-lg mt-0 text-muted-foreground">{post.description}</p>
+<p style={{ textAlign: "justify" }} className="text-lg mt-0 text-muted-foreground ">{post.description}</p>
 
         </div>
         
