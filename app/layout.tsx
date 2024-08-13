@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { Roboto } from 'next/font/google'
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/site-header";
@@ -8,7 +9,10 @@ import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
