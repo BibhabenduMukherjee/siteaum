@@ -79,7 +79,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <Tag tag={tag} key={tag} />
         ))}
         <div className="h-[22px] mb-[34px]">
-        <p className="text-sm font-bold">{post.readtime} min to read</p>
+        <p className="text-[8px] md:text-sm font-bold">{post.readtime} min to read</p>
 
         </div>
       </div>
