@@ -5,7 +5,7 @@ export const siteConfig = {
   author: "Bibhabendu",
   links: {
     twitter: "https://twitter.com",
-    github: "https://github.com/BibhabenduMukherjee",
+    github: "https://contact.codeaum.in/",
     linkedin: "https://www.linkedin.com/in/bibhabendu-mukherjee-a837671b5/",
     personalSite: "",
   },

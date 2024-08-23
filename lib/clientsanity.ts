@@ -12,3 +12,4 @@ export const client = createClient({
     apiVersion : "2024-05-06",
     useCdn: true
 })
+

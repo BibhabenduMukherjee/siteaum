@@ -25,6 +25,11 @@ export default async function AboutPage() {
                     Thank you for visiting, and I wish you peace and happiness through your learning journey.
 
                 </p>
+                <p>
+                    Best Regards,
+                </p>
+                {/* <span className = "font-semibold font-mono">Bibhabendu Mukherjee</span> */}
+                <blockquote className='border-l-[#F7AB0A] text-lg border-l-4 pl-5 py-2 my-5 '>Bibhabendu Mukherjee</blockquote>
             </article>
         </div>
     )

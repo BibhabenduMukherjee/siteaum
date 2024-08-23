@@ -8,13 +8,9 @@ export const  RichTextComponents = {
     types: {
       image: ({value} :any) => {
          return (
-            <div className='relative w-full h-[250px] md:h-[600px] m-10 mx-auto'>
-            <Image src={urlFor(value).width(600).url()}
-            className = 'object-cover'
-            alt='Blog Post Image'
-            fill
-            />
-            </div>
+          <div style={{display: "flex" , marginBottom : "20px", justifyContent : "center"}}>
+<img  style={{width : "70%",height:"40%"}} src= {urlFor(value).url()} />
+</div>
          )
       },
       code: ({ value }:any) => {
@@ -29,10 +25,10 @@ export const  RichTextComponents = {
    
         list : {
   bullet : ({children} : any)=>(
-    <ul className=' ml-4 md:ml-8 py-1 list-disc text-[17px] text-[#3f6cce] md:text-[20px] space-y-5'>{children}</ul>
+    <ul className=' ml-4 md:ml-8 py-1 list-disc text-[15px] md:text-[16px] space-y-2'>{children}</ul>
   ),
   number  : ({children} : any)=> (
-    <ol className='ml-4 py-1 list-disc space-y-5'>{children}</ol>
+    <ol className='ml-4 py-1 list-disc space-y-5 '>{children}</ol>
   ),
   },
     block : {
@@ -51,7 +47,7 @@ export const  RichTextComponents = {
     ),
 
     normal : ({children} : any)=>{
-     return <p style={{ textAlign : "justify" , lineHeight : 1.7}} className='   text-[15px] md:text-[17px]'>{children}</p>
+     return <p style={{ textAlign : "justify" , lineHeight : 1.7}} className='  dark:text-white/60  text-black/70 text-[15px] md:text-[17px]'>{children}</p>
     },
    
     blockquote : ({children} : any) => (
@@ -59,10 +55,7 @@ export const  RichTextComponents = {
     )
     
     ,
-   
 
-
-    
    
   },
 

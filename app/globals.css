@@ -3,6 +3,88 @@
 @tailwind utilities;
 
 
+
+html {
+  scroll-behavior: smooth;
+}
+
+.image-slider{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  animation: moving 14s linear infinite;
+}
+
+@keyframes moving {
+   0%{
+    transform: perspective(1000px) rotateY(0deg);
+   }
+
+   100%{
+    transform: perspective(1000px) rotateY(360deg);
+   }
+}
+
+.image-slider span {
+  position : absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transition-property: rotateY(45deg) translateZ(350px) ;
+}
+
+.image-slider span img{
+  position:absolute;
+  top: 0;
+  left: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: 2s;
+
+}
+
+/* Default styles */
+/* Default styles */
+.moving-div {
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  position: relative;
+  top: 0;
+  animation: move 4s linear infinite;
+}
+
+/* Keyframes animation */
+@keyframes move {
+  0%, 100% {
+    top: 0; /* Starting position */
+  }
+  50% {
+    top: 100px; /* Move down */
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .moving-div {
+    animation: move-small-screen 4s linear infinite;
+  }
+
+  @keyframes move-small-screen {
+    0%, 100% {
+      top: 0; /* Starting position */
+    }
+    50% {
+      top: -100px; /* Move up */
+    }
+  }
+}
  
 @layer base {
   :root {
@@ -74,5 +156,36 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+
+.scroll-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.scroll-content {
+  display: flex;
+  animation: scroll 10s linear infinite;
+  white-space: nowrap;
+}
+
+.scroll-content span {
+  display: inline-block;
+  padding: 0 40px;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
