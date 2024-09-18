@@ -82,7 +82,7 @@ export const RichTextComponents = {
         </div>
       </div>
     ),
-
+   //add some extra here
     normal: ({ children }: any) => {
       return <p style={{ textAlign: "justify", marginBottom: 6, lineHeight: 1.7 }} className=' selection:bg-yellow-300 dark:selection:bg-blue-500  dark:text-white/80  text-black/70 text-[15px] md:text-[17px]'>{children}</p>
     },
