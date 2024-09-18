@@ -7,7 +7,10 @@ import { build } from "velite";
 
 export default {
   // othor next config here...
-  
+
+  images : {
+  domains : ["cdn.sanity.io"]
+  },
 
   webpack: (config) => {
     config.plugins.push(new VeliteWebpackPlugin());

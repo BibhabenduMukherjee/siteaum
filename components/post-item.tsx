@@ -10,6 +10,8 @@ interface PostItemProps {
   description?: string;
   date: string;
   tags?: Array<string>;
+  level? : string
+  chapterNumber? :string
 }
 
 export function PostItem({
@@ -18,12 +20,14 @@ export function PostItem({
   description,
   date,
   tags,
+  chapterNumber
 }: PostItemProps) {
   return (
     <article className="flex flex-col gap-2 border-border border-b py-3">
       <div>
         <h2 className="text-xl font-bold">
-          <Link href={"/" + slug}>{title}</Link>
+          {chapterNumber ?  <Link href={"/" + slug}>  <span className="text-red-400">Chapter {chapterNumber}</span>  <span className="ml-3">{title}</span></Link> :  <Link href={"/" + slug}>{title}</Link>}
+         
         </h2>
       </div>
       <div className="flex gap-2">

@@ -73,14 +73,20 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article style={{ textAlign: "left" }} className="container  text-[17px] py-6 prose dark:prose-invert max-w-5xl mx-auto">
-      <p className="mb-2 text-3xl font-semibold">{post.title}</p>
-      <div className="flex items-center gap-2 mb-2">
+      <p className="mb-2 text-3xl dark:text-yellow-500 font-semibold">{post.title}</p>
+      <div className="flex flex-col justify-center  gap-2 mb-2">
+        <div>
         {post.tags?.map((tag) => (
           <Tag tag={tag} key={tag} />
         ))}
-        <div className="h-[22px] mb-[34px]">
-        <p className="text-[8px] md:text-sm font-bold">{post.readtime} min to read</p>
-
+        </div>
+      
+        <div className=" h-7 flex items-center  p-1 ml-1">
+          <div className="flex items-center  space-x-2">
+          <p className="text-[10px] md:text-sm font-bold">{post.readtime} min to read</p>
+          <p className="text-[10px] md:text-sm font-bold">{new Date(post.date).toLocaleDateString()}</p>
+          </div>
+       
         </div>
       </div>
       {post.description ? (
