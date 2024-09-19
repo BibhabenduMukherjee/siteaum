@@ -36,7 +36,7 @@ async function page({ params: { slug } }: Props) {
         "image": author->image.asset->url
     }
     `
-
+    let a;
     let post;
     post = await client.fetch(query, { slug })
 

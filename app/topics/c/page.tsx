@@ -15,7 +15,8 @@ export default async function Page() {
       "image": author->image.asset->url
     }
   }
-}
+}   
+  
         `
         const chapterwiseposts = await client.fetch(query)
         return chapterwiseposts
