@@ -4,8 +4,7 @@ import { PortableText } from '@portabletext/react'
 import { RichTextComponents } from "@/components/RichTextComponent"
 import Link from "next/link"
 import PostViewCount from "@/components/PostViewCount"
-import { urlFor } from "@/lib/urlFor"
-import Image from "next/image"
+
 type Props = {
     params: {
         slug: string
