@@ -22,9 +22,7 @@ export default async function Page() {
         return chapterwiseposts
     }
     let a = [];
-    if (flg.NEXT_PUBLIC_PUBLISH_MODE) {
-        a = await getPosts();
-    }
+     a = await getPosts();
     
     //console.log(a);
     return (
