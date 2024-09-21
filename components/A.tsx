@@ -6,10 +6,19 @@ export default function A(){
                <TypeAnimation
       sequence={[
         // Same substring at the start will only be typed out once, initially
-        "Let's share love",
+        "Master in DSA",
         1000, // wait 1s before replacing "Mice" with "Hamsters
-        "Let's create mind",
-        1000
+        "Master in C++",
+        1000,
+        "Master in Web dev",
+        1000,
+        "Master in Devops",
+        1000,
+        "Master in Design",
+        1000,
+        "Master in ML",
+        
+        
       ]}
       wrapper="span"
       speed={60}
