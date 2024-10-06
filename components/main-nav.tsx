@@ -57,6 +57,17 @@ export function MainNav() {
         CS Topics
       </Link>
 
+
+      <Link
+        href="/advanced"
+        className={cn(
+          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
+          pathname === "/advanced" ? "text-foreground" : "text-foreground/60"
+        )}
+      >
+        Advanced
+      </Link>
+
       <Link
        href="https://contact.codeaum.in"
         className={cn(

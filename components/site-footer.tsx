@@ -21,7 +21,7 @@ export function SiteFooter() {
         </div>
         <div className="mb-2 flex space-x-2 text-sm text-muted-foreground">
           <a href={siteConfig.links.personalSite} target="_blank">
-            ---{siteConfig.author} @2024---
+            --- Codeaum @2024---
           </a>
         </div>
       </div>
