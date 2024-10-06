@@ -47,6 +47,9 @@ export function MobileNav() {
           <Link target="_blank" rel="noreferrer" href={"/cs"}>
           CS Topics
           </Link>
+          <Link target="_blank" rel="noreferrer" href={"/advanced"}>
+          Advanced
+          </Link>
 
           <Link target="_blank" rel="noreferrer" href="https://contact.codeaum.in">
           Share ideas

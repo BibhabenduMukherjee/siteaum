@@ -8,9 +8,11 @@ function Code({ code, filename, language }) {
     Prismjs.highlightAll()
   })
   return (
-    <div className='text-center md:w-[760px] w-[320px]   mt-8 mx-auto '>
+    <div className='text-center md:w-[760px] w-[320px]    mx-auto '>
       {/* <div className='relative rounded-md top-2   bg-slate-800 text-lg text-white'>{filename}</div> */}
-      <pre className="language-javascript rounded-lg  ">
+      
+      <pre className="language-javascript rounded-lg text-[14px]  md:text-[15px]  ">
+    
         <code className="language-javascript ">{code}</code>
       </pre>
 

@@ -6,20 +6,27 @@ import Code from "./Code"
 import { urlFor } from '@/lib/urlFor'
 import { TableRoww } from './TableRow'
 import { Table } from './ui/table'
+import { CopyIcon } from 'lucide-react'
+import { CopyCom } from './CopyCom'
 
 export const RichTextComponents = {
   types: {
     image: ({ value }: any) => {
       return (
         <div style={{ display: "flex", marginBottom: "20px", justifyContent: "center" }}>
-          <img style={{ width: "70%", height: "40%" }} src={urlFor(value).url()} />
+          <img className='  w-[300px] md:w-[600px] '  style={{ marginTop : "40px" }} src={urlFor(value).url()} />
         </div>
       )
     },
     code: ({ value }: any) => {
       const { code, filename, language } = value;
-      return (
-        <Code code={code} filename={filename} language={language} />
+      return (<div className='mt-4'>
+
+      
+      <CopyCom code ={code}/>
+      <Code code={code} filename={filename} language={language} />
+      </div>
+        
       );
     },
 
