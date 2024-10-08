@@ -26,7 +26,7 @@ export const revalidate = 10;
 // }
 async function page({ params: { slug } }: Props) {
     const query = groq`
-    *[_type == "chapter" && chapterNumber == "1"] | order(_createdAt desc) {
+    *[_type == "chapter" && chapterNumber == $slug] | order(_createdAt desc) {
     
      topics[topicName == "c"]{
     posts[]-> {
