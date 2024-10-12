@@ -2,6 +2,7 @@ import { client } from "@/lib/clientsanity"
 import { groq } from "next-sanity"
 import Link from "next/link"
 
+export const revalidate = 10
 export default async function page (){
     const query = groq`
     *[_type == "post" && chapter == 'advanced'] | order(_createdAt desc) {
@@ -19,7 +20,7 @@ export default async function page (){
                 <ul className="">
                     {
                         post.map((post :any) => (
-                            <li key = {post._id} className="list-disc">
+                            <li key = {post._id} className="list-disc hover:underline text-[17px] md:text-[19px]">
                                 <Link href={`/advanced/${post.slug.current}`}>
                                     {post.title}
                                 </Link>

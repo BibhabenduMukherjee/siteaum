@@ -9,6 +9,7 @@ type Props = {
     }
 }
 
+export const revalidate = 10
 
 export default async function page({ params: { slug } }: Props) {
     const query = groq`
@@ -21,7 +22,7 @@ export default async function page({ params: { slug } }: Props) {
     let a;
     let post;
     post = await client.fetch(query, { slug })
-     console.log(post.author.name);
+     //console.log(post.author.name);
      
     return (
         <div>

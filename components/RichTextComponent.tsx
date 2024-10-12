@@ -13,9 +13,17 @@ export const RichTextComponents = {
   types: {
     image: ({ value }: any) => {
       return (
-        <div style={{ display: "flex", marginBottom: "20px", justifyContent: "center" }}>
-          <img className='  w-[300px] md:w-[600px] '  style={{ marginTop : "40px" }} src={urlFor(value).url()} />
-        </div>
+        <div 
+      className="max-w-full w-[100%] sm:w-[400px] md:w-[690px] lg:w-[800px] mx-auto" 
+      style={{ display: "flex", justifyContent: "center", marginBottom: "10px" }}
+    >
+      <img 
+        className="object-cover w-full h-auto  max-h-[360px]" 
+        style={{ marginTop: "10px" }} 
+        src={urlFor(value).url()} 
+        alt="Image"
+      />
+    </div>
       )
     },
     code: ({ value }: any) => {
