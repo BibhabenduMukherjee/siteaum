@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Lora , Source_Sans_3 } from "next/font/google";
+import { Inter, Lora , Raleway, Source_Sans_3 } from "next/font/google";
 import { Roboto } from 'next/font/google'
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -8,7 +8,7 @@ import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";
 
-const inter = Source_Sans_3({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Raleway({ subsets: ["latin"], variable: "--font-sans" });
 const roboto = Roboto({
   weight: '400',
   subsets: ['latin'],
