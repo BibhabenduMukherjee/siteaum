@@ -27,7 +27,7 @@ export default async function page({ params: { slug } }: Props) {
     return (
         <div>
             
-        <article className="max-w-4xl w-[320px] md:w-[760px] mx-auto">
+        <article className="max-w-5xl w-[350px] md:w-[890px] mx-auto">
             <div>
                 <div className='flex mb-10 mt-10 flex-col md:flex-row justify-between gap-5'>
                     <div>

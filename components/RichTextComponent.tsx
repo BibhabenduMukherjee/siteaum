@@ -14,81 +14,70 @@ export const RichTextComponents = {
     image: ({ value }: any) => {
       return (
         <div 
-      className="max-w-full w-[100%] sm:w-[400px] md:w-[690px] lg:w-[800px] mx-auto" 
-      style={{ display: "flex", justifyContent: "center", marginBottom: "10px" }}
-    >
-      <img 
-        className="object-cover w-full h-auto  max-h-[360px]" 
-        style={{ marginTop: "10px" }} 
-        src={urlFor(value).url()} 
-        alt="Image"
-      />
-    </div>
+          className="max-w-5xl w-full mx-auto flex justify-center mb-4"
+        >
+          <img 
+            className="object-contain w-full h-auto max-h-[500px]" 
+            src={urlFor(value).url()} 
+            alt={value.alt || "Image"}
+          />
+        </div>
       )
     },
     code: ({ value }: any) => {
       const { code, filename, language } = value;
-      return (<div className='mt-4'>
-
-      
-      <CopyCom code ={code}/>
-      <Code code={code} filename={filename} language={language} />
-      </div>
-        
+      return (
+        <div className='mt-4 max-w-5xl mx-auto'>
+          <CopyCom code={code} />
+          <Code code={code} filename={filename} language={language} />
+        </div>
       );
     },
-
-  
-      sizeChart : ({value} : any) => {
-        return (
-          <Table className='bg-blue-400/25 mt-16 rounded-md'>
-            {value.rows.map((row:any)  =>
-              <TableRoww row={row} />)}
-          </Table>
-        )
-    
-    
+    sizeChart: ({ value }: any) => {
+      return (
+        <Table className='bg-blue-400/25 mt-16 rounded-md max-w-5xl mx-auto'>
+          {value.rows.map((row: any, index: number) => (
+            <TableRoww key={index} row={row} />
+          ))}
+        </Table>
+      )
     },
-
     callout: ({ value }: any) => {
       return (
-        <div className="border-2 border-yellow-500 p-4 rounded-md bg-yellow-100 dark:border-blue-500 dark:bg-blue-50 dark:text-white/70">
+        <div className="border-2 border-yellow-500 p-4 rounded-md bg-yellow-100 dark:border-blue-500 dark:bg-blue-50 dark:text-white/70 max-w-5xl mx-auto">
           <p>{value}</p>
         </div>
       )
     }
-
   },
-
 
   list: {
     bullet: ({ children }: any) => (
-      <div className= "max-w-2xl mx-auto">
-      <ul style={{ textAlign: "justify" }}  className=' ml-4 md:ml-8 dark:text-white/80  selection:bg-yellow-300 dark:selection:bg-blue-500  text-black/70  py-1 list-disc text-[15px] md:text-[16px] space-y-2'>{children}</ul>
-
+      <div className="max-w-5xl mx-auto">
+        <ul className='ml-4 md:ml-8 dark:text-white/80 selection:bg-yellow-300 dark:selection:bg-blue-500 text-black/70 py-1 list-disc text-[15px] md:text-[16px] space-y-2'>
+          {children}
+        </ul>
       </div>
     ),
     number: ({ children }: any) => (
-      <ol className='ml-4 py-1 list-disc space-y-5 '>{children}</ol>
+      <ol className='ml-4 py-1 list-decimal space-y-5 max-w-5xl mx-auto'>{children}</ol>
     ),
   },
   block: {
     h1: ({ children }: any) => (
-      <h1 className="text-4xl  dark:text-yellow-300 selection:bg-yellow-300 dark:selection:bg-blue-500 py-5 font-bold">{children}</h1>
+      <h1 className="text-4xl dark:text-yellow-300 selection:bg-yellow-300 dark:selection:bg-blue-500 py-2 font-bold max-w-5xl mx-auto">{children}</h1>
     ),
-
     h2: ({ children }: any) => (
-      <h2 className="text-3xl  dark:text-yellow-300  selection:bg-yellow-300 dark:selection:bg-blue-500 py-5 font-bold">{children}</h2>
+      <h2 className="text-3xl dark:text-yellow-300 selection:bg-yellow-300 dark:selection:bg-blue-500 py-2 font-bold max-w-5xl mx-auto">{children}</h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className=" text-black  dark:text-yellow-400/85 text-2xl py-5 font-bold  selection:bg-yellow-300 dark:selection:bg-blue-500">{children}</h3>
+      <h3 className="text-black dark:text-yellow-400/85 text-2xl  font-bold selection:bg-yellow-300 dark:selection:bg-blue-500 max-w-5xl mx-auto">{children}</h3>
     ),
     h4: ({ children }: any) => (
-      <h4 className="text-xl py-5 font-bold  selection:bg-yellow-300 dark:selection:bg-blue-500">{children}</h4>
+      <h4 className="text-xl py-5 font-bold selection:bg-yellow-300 dark:selection:bg-blue-500 max-w-5xl mx-auto">{children}</h4>
     ),
-
     h5: ({ children }: any) => (
-      <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 mt-4 shadow-lg rounded-lg overflow-hidden">
+      <div className="max-w-5xl mx-auto bg-white dark:bg-gray-800 mt-4 shadow-lg rounded-lg overflow-hidden">
         <div className="p-6">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Important Highlight</h2>
           <p className="text-gray-700 dark:text-gray-300">
@@ -97,35 +86,19 @@ export const RichTextComponents = {
         </div>
       </div>
     ),
-   //add some extra here df
-    normal: ({ children }: any) => {
-      return <p style={{ textAlign: "justify", marginBottom: 6, lineHeight: 1.7 }} className=' selection:bg-yellow-300 dark:selection:bg-blue-500  dark:text-white/80  text-black/70 text-[15px] md:text-[17px]'>{children}</p>
-    },
-
+    normal: ({ children }: any) => (
+      <p className='selection:bg-yellow-300 dark:selection:bg-blue-500 dark:text-white/80 text-black/70 text-[15px] md:text-[17px] leading-7 text-justify max-w-5xl mx-auto mb-6'>{children}</p>
+    ),
     blockquote: ({ children }: any) => (
-      <blockquote className='border-l-[#F7AB0A]  selection:bg-yellow-300 dark:selection:bg-blue-500 text-lg border-l-4 pl-5 py-2 my-5 '>"{children}"</blockquote>
+      <blockquote className='border-l-[#F7AB0A] selection:bg-yellow-300 dark:selection:bg-blue-500 text-lg border-l-4 pl-5 py-2 my-5 max-w-5xl mx-auto'>"{children}"</blockquote>
     )
-
-    ,
   },
-
   marks: {
     link: ({ children, value }: any) => {
-      const rel = !value.href.startsWith("/")
-        ? "noreferrer noopener" : undefined
-
+      const rel = !value.href.startsWith("/") ? "noreferrer noopener" : undefined
       return (
-        <Link href={value.href} rel={rel} className="underline decoration-[#F7AB0A] hover:decoration-black">{children}</Link>
+        <Link href={value.href} rel={rel} className="underline decoration-[#F7AB0A] hover:decoration-black max-w-5xl mx-auto">{children}</Link>
       )
-    },
-    // code: ({code}: any) => {
-    //   <div className='m-2 md:mx-auto flex flex-col'>
-    //   <Code code = {code}/>
-    //   </div>
-    // },
-
+    }
   }
-
-
 }
-
