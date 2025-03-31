@@ -69,6 +69,16 @@ export function MainNav() {
       </Link>
 
       <Link
+        href="/book"
+        className={cn(
+          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
+          pathname === "/book" ? "text-foreground" : "text-foreground/60"
+        )}
+      >
+        Books
+      </Link>
+
+      <Link
        href="https://contact.codeaum.in"
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
