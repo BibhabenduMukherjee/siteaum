@@ -30,3 +30,11 @@ export   const topics = [
     
    
   ]
+
+  export const advancedCategories = [
+    "System Design",
+    "Database",
+    "Miscellaneous",
+    "Coding",
+    "Projects"
+  ]

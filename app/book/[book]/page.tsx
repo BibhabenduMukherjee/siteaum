@@ -5,7 +5,7 @@ const BookContent = dynamic(() => import("../../../components/BookContent"), {
   ssr: false,
 });
 
-const BookInfoModal = dynamic(() => import("../../../components/BookInfoModal"), {
+const BookAbstract = dynamic(() => import("../../../components/BookAbstract"), {
     ssr: false,
   });
 
@@ -30,12 +30,13 @@ export default async function BookPage({ params }: { params: { book: string } })
   }
 
   return (
-    <div className="max-w-6xl flex-col space-y-4 mx-auto p-6">
+    <div className="max-w-7xl flex-col space-y-4 mx-auto p-6">
       {/* Book Title + Info Modal */}
-      <div className="flex ite  items-center gap-2">
-        <h1 className="text-3xl font-bold">{book.title}</h1>
-        <BookInfoModal title={book.title} authorName={book.authorName} description={book.description} />
+      <div className="flex items-center gap-2">
+        <h1 className="text-2xl font-bold">{book.title}</h1>
       </div>
+
+      <BookAbstract description={book.description} />
 
       {/* Book Content */}
       <BookContent chapters={book.chapters} />

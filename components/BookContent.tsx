@@ -39,7 +39,7 @@ export default function BookContent({ chapters }: BookContentProps) {
       <div className="hidden md:flex w-full h-full">
         <ResizablePanelGroup direction="horizontal" className="w-full h-full">
           {/* Sidebar for Chapter List (Hidden on Small Screens) */}
-          <ResizablePanel defaultSize={10} minSize={10} maxSize={20} className="hidden md:block">
+          <ResizablePanel defaultSize={15} minSize={10} maxSize={30} className="hidden md:block">
             <div className="p-4 h-full overflow-y-auto">
               <h2 className="text-xl font-bold mb-2">Chapters</h2>
               <ul>
@@ -59,7 +59,7 @@ export default function BookContent({ chapters }: BookContentProps) {
           </ResizablePanel>
 
           {/* Handle for Resizing */}
-          <ResizableHandle className="bg-gray-200 w-1 cursor-ew-resize hidden md:block" />
+          <ResizableHandle className=" w-1 cursor-ew-resize hidden md:block" />
 
           {/* Content Display (Make Full Width on Small Screens) */}
           <ResizablePanel defaultSize={70} minSize={60} maxSize={100} className="w-full">

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
+import { advancedCategories } from "@/tooics"
 
 const categories = ["abc"]
 
@@ -36,7 +37,7 @@ export default function CategoryFilter() {
                 <SelectValue placeholder="Select a category" />
             </SelectTrigger>
             <SelectContent>
-                {categories.map((category) => (
+                {advancedCategories.map((category:any) => (
                     <SelectItem key={category} value={category}>
                         {category}
                     </SelectItem>

@@ -24,6 +24,7 @@
     "@sanity/vision": "^3.55.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "framer-motion": "^12.6.2",
     "github-slugger": "^2.0.0",
     "katex": "^0.16.11",
     "lucide-react": "^0.344.0",

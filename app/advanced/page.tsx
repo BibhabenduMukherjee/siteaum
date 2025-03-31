@@ -32,7 +32,7 @@ export default async function page({ searchParams }: { searchParams: { category?
         }
     }
     const post = await client.fetch(query,params)
-    console.log(post)
+    // console.log(post)
     return (
 
         <div className="max-w-3xl mx-auto p-4 flex flex-col space-y-3  ">
