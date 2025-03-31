@@ -54,7 +54,7 @@ export const RichTextComponents = {
   list: {
     bullet: ({ children }: any) => (
       <div className="max-w-5xl mx-auto">
-        <ul className='ml-4 md:ml-8 dark:text-white/80 selection:bg-yellow-300 dark:selection:bg-blue-500 text-black/70 py-1 list-disc text-[15px] md:text-[16px] space-y-2'>
+        <ul className='ml-4 md:ml-8 dark:text-white/80 selection:bg-yellow-300 dark:selection:bg-blue-500 text-black/70 py-1 list-disc text-[15px] md:text-[17px] space-y-2'>
           {children}
         </ul>
       </div>
@@ -87,7 +87,7 @@ export const RichTextComponents = {
       </div>
     ),
     normal: ({ children }: any) => (
-      <p className='selection:bg-yellow-300 dark:selection:bg-blue-500 dark:text-white/80 text-black/70 text-[15px] md:text-[17px] leading-7 text-justify max-w-5xl mx-auto mb-6'>{children}</p>
+      <p className='selection:bg-yellow-300 dark:selection:bg-blue-500 dark:text-white/80 text-black/70 text-[15px] md:text-[18px] leading-7 text-justify max-w-5xl mx-auto mb-6'>{children}</p>
     ),
     blockquote: ({ children }: any) => (
       <blockquote className='border-l-[#F7AB0A] selection:bg-yellow-300 dark:selection:bg-blue-500 text-lg border-l-4 pl-5 py-2 my-5 max-w-5xl mx-auto'>"{children}"</blockquote>

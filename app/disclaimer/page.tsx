@@ -20,7 +20,8 @@ export default async function AboutPage() {
                     As you explore the articles and posts shared here, I encourage you to engage with the content with an open mind and a spirit of curiosity. My hope is that the knowledge you gain from this blog contributes to your personal growth and understanding.
                 </p>
 
-
+              <p>
+              </p>
                 <p className="dark:text-white/75 text-black" style={{ textAlign: "justify" }}>
                     Thank you for visiting, and I wish you peace and happiness through your learning journey.
 

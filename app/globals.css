@@ -7,6 +7,18 @@
 html {
   scroll-behavior: smooth;
 }
+::-webkit-scrollbar {
+  width: 2px; /* Adjust the width */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0; /* Change color */
+  border-radius: 10px; /* Smooth edges */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Lighter background */
+}
 
 .image-slider{
   position: relative;
