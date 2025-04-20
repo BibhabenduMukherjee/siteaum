@@ -34,7 +34,7 @@ export default async function BooksPage() {
                                 />
                             )}
                             <h2 className="text-xl font-semibold mt-4">{book.title}</h2>
-                            <p className="text-gray-600 text-sm mt-1">{book.description}</p>
+                            <p className="text-sm mt-1">{book.description}</p>
                         </div>
                     </Link>
                 ))}

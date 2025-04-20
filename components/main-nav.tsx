@@ -68,7 +68,7 @@ export function MainNav() {
         Advanced
       </Link>
 
-      <Link
+      {/* <Link
         href="/book"
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
@@ -76,7 +76,7 @@ export function MainNav() {
         )}
       >
         Books
-      </Link>
+      </Link> */}
 
       <Link
        href="https://contact.codeaum.in"

@@ -7,7 +7,6 @@ import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";
-
 const inter = Bitter({ subsets: ["latin"], variable: "--font-sans" });
 const roboto = Roboto({
   weight: '400',

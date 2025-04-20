@@ -8,6 +8,7 @@ import {
   ResizableHandle,
 } from "@/components/ui/resizable";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { RichTextComponents } from "./RichTextComponent";
 
 interface BookContentProps {
   chapters: { title: string; content: any }[];
@@ -66,7 +67,7 @@ export default function BookContent({ chapters }: BookContentProps) {
             <div className="p-4 h-full overflow-y-auto scrollbar-thin scrollbar-track-gray-50 scrollbar-thumb-gray-300">
               <h2 className="text-2xl font-bold">{chapters[selectedChapter].title}</h2>
               <div className="mt-2">
-                <PortableText value={chapters[selectedChapter].content} />
+                <PortableText value={chapters[selectedChapter].content} components={RichTextComponents} />
               </div>
             </div>
           </ResizablePanel>
@@ -77,7 +78,7 @@ export default function BookContent({ chapters }: BookContentProps) {
       <div className="md:hidden p-4 w-full">
         <h2 className="text-2xl font-bold">{chapters[selectedChapter].title}</h2>
         <div className="mt-2">
-          <PortableText value={chapters[selectedChapter].content} />
+          <PortableText value={chapters[selectedChapter].content} components={RichTextComponents}/>
         </div>
       </div>
     </div>
