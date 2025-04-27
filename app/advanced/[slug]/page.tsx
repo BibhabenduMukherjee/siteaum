@@ -42,10 +42,10 @@ export default async function page({ params: { slug } }: Props) {
 
                 {/* Title and meta */}
                 <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4">
-                    <h1 className="text-white text-3xl md:text-5xl font-extrabold drop-shadow-md mb-4">
+                    <h1 className="text-3xl md:text-5xl font-extrabold drop-shadow-md mb-4">
                         {post.title}
                     </h1>
-                    <div className="flex items-center space-x-4 text-sm text-gray-300">
+                    <div className="flex items-center space-x-4 text-sm">
                         <span>
                             {new Date(post._createdAt).toLocaleDateString("en-IN", {
                                 day: "numeric",
@@ -57,7 +57,7 @@ export default async function page({ params: { slug } }: Props) {
                             @{post.author.name}
                         </a>
                     </div>
-                    <p className="text-gray-300 mt-2 max-w-xl text-base md:text-lg">
+                    <p className="mt-2 max-w-xl text-base md:text-lg">
                         {post.description}
                     </p>
                 </div>
