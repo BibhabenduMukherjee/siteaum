@@ -10,6 +10,7 @@ import { CopyIcon } from 'lucide-react'
 import { CopyCom } from './CopyCom'
 
 export const RichTextComponents = {
+  
   types: {
     image: ({ value }: any) => {
       return (
@@ -23,6 +24,22 @@ export const RichTextComponents = {
           />
         </div>
       )
+    },
+    iframe: ({ value }: any) => {
+      const { url, title, height = 400 } = value;
+      return (
+        <div className="max-w-5xl mx-auto my-6">
+          <iframe
+            src={url}
+            title={title || "Embedded Content"}
+            width="100%"
+            height={height}
+            className="rounded-md border dark:border-gray-700"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
+      );
     },
     code: ({ value }: any) => {
       const { code, filename, language } = value;

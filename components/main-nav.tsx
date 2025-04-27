@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export function MainNav() {
   const pathname = usePathname();
   return (
-    <nav className="flex items-center space-x-4 lg:space-x-6">
+    <nav className="flex fixed z-50 items-center bg-background shadow-sm space-x-4 z-100 lg:space-x-6">
 
       <Link href="/" className=" flex items-center space-x-2">
 
@@ -68,7 +68,7 @@ export function MainNav() {
         Advanced
       </Link>
 
-      {/* <Link
+      <Link
         href="/book"
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
@@ -76,7 +76,7 @@ export function MainNav() {
         )}
       >
         Books
-      </Link> */}
+      </Link>
 
       <Link
        href="https://contact.codeaum.in"

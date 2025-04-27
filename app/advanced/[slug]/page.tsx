@@ -1,7 +1,9 @@
 import { RichTextComponents } from "@/components/RichTextComponent";
 import { client } from "@/lib/clientsanity";
+import { urlFor } from "@/lib/urlFor";
 import { Link } from "lucide-react";
 import { groq, PortableText } from "next-sanity";
+import Image from "next/image";
 
 type Props = {
     params: {
@@ -19,58 +21,69 @@ export default async function page({ params: { slug } }: Props) {
         "image": author->image.asset->url
     }
     `
-    let a;
-    let post;
-    post = await client.fetch(query, { slug })
-     //console.log(post.author.name);
-     
+    const post = await client.fetch(query, { slug })
+
     return (
-        <div>
-            
-        <article className="max-w-5xl w-[350px] md:w-[890px] mx-auto">
-            <div>
-                <div className='flex mb-10 mt-10 flex-col md:flex-row justify-between gap-5'>
-                    <div>
-                        <h1 className='md:text-4xl  text-3xl font-extrabold'>
-                            {post.title}
-                        </h1>
+        <div className="flex flex-col min-h-screen pt-[20px]">
+            {/* Fixed Hero Section */}
+            <div className="relative w-full h-[300px] md:h-[450px] lg:h-[500px] overflow-hidden z-40">
+                {/* Blurred background image */}
+                {post.mainImage && (
+                    <Image
+                        src={urlFor(post.mainImage).url()}
+                        alt={post.title}
+                        fill
+                        className="object-cover object-center blur-lg brightness-75"
+                        priority
+                    />
+                )}
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/30" />
 
-                        <div className="relative min-h-18 flex flex-col md:flex-row justify-between">
-                            {/* <div className='absolute top-0 w-full h-full opacity-70 blur-sm p-10'>
-                                <Image
-                                    src={urlFor(post.mainImage).url()}
-                                    alt={"hello"}
-                                    className='object-cover object-center mx-auto'
-                                    fill
-                                />
-                            </div> */}
-
-
-                        </div>
-
-                        <div className="flex mt-2 items-center md:space-x-4  space-x-2 ">
-                            <p className=" text-[12px] md:text-[16px]">
-                                {new Date(post._createdAt).toLocaleDateString("en-IN", {
-                                    day: "numeric",
-                                    month: "long",
-                                    year: "numeric"
-                                })}
-                            </p>
-                            <a href={`/author/${post.author.slug.current}`}>@{post.author.name}</a>
-                        </div> 
-
-                        {/* <PostViewCount post = {post}/> */}
-                        <h1 className='text-[14px]  md:text-[18px] mt-4'>
-                            {post.description}
-                        </h1>
+                {/* Title and meta */}
+                <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4">
+                    <h1 className="text-white text-3xl md:text-5xl font-extrabold drop-shadow-md mb-4">
+                        {post.title}
+                    </h1>
+                    <div className="flex items-center space-x-4 text-sm text-gray-300">
+                        <span>
+                            {new Date(post._createdAt).toLocaleDateString("en-IN", {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric",
+                            })}
+                        </span>
+                        <a href={`/author/${post.author.slug.current}`} className="underline">
+                            @{post.author.name}
+                        </a>
                     </div>
+                    <p className="text-gray-300 mt-2 max-w-xl text-base md:text-lg">
+                        {post.description}
+                    </p>
                 </div>
-                <PortableText value={post.body} components={RichTextComponents} />
             </div>
 
-        </article>
-
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto px-4 md:px-0 max-w-7xl mx-auto w-full pt-10">
+                <article>
+                    <PortableText value={post.body} components={RichTextComponents} />
+                    
+                    {/* YouTube Embed if exists */}
+                    {post.ytemburl && (
+                        <div className="max-w-5xl mx-auto my-6">
+                            <iframe
+                                src={post.ytemburl}
+                                title={"Embedded Content"}
+                                width="100%"
+                                height={500}
+                                className="rounded-md border h-[300px] md:h-[460px] dark:border-gray-700"
+                                allowFullScreen
+                                loading="lazy"
+                            />
+                        </div>
+                    )}
+                </article>
+            </div>
         </div>
     )
-
 }
