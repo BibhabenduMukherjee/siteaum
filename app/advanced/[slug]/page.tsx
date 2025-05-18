@@ -41,11 +41,12 @@ export default async function page({ params: { slug } }: Props) {
                 <div className="absolute inset-0 bg-black/30" />
 
                 {/* Title and meta */}
-                <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4">
-                    <h1 className="text-3xl md:text-5xl font-extrabold drop-shadow-md mb-4">
+                <div className="relative z-10 flex   flex-col justify-center items-center h-full text-center px-4">
+                    <div className="p-2 md:p-4 flex  flex-col items-center bg-blue-600 h-[120px] md:h-[150px] ">
+                    <h1 className="text-xl   text-white md:text-5xl font-extrabold drop-shadow-md mb-4">
                         {post.title}
                     </h1>
-                    <div className="flex items-center space-x-4 text-sm">
+                    <div className="flex items-center mb-2 space-x-4 text-sm">
                         <span>
                             {new Date(post._createdAt).toLocaleDateString("en-IN", {
                                 day: "numeric",
@@ -57,6 +58,9 @@ export default async function page({ params: { slug } }: Props) {
                             @{post.author.name}
                         </a>
                     </div>
+                    </div>
+                    
+                    
                     <p className="mt-2 max-w-xl text-base md:text-lg">
                         {post.description}
                     </p>
@@ -64,7 +68,7 @@ export default async function page({ params: { slug } }: Props) {
             </div>
 
             {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto px-4 md:px-0 max-w-7xl mx-auto w-full pt-10">
+            <div className="flex-1 overflow-y-auto px-4 md:px-0 max-w-6xl mx-auto w-full pt-10">
                 <article>
                     <PortableText value={post.body} components={RichTextComponents} />
                     

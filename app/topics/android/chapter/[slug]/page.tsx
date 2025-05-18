@@ -25,12 +25,9 @@ export const revalidate = 10;
 //     }))
 // }
 async function page({ params: { slug } }: Props) {
-    console.log(slug);
-
     const query = groq`
     *[_type == "chapter" && chapterNumber == $slug] | order(_createdAt desc) {
-    
-     topics[topicName == "c"]{
+     topics[topicName == "android"]{
     posts[]-> {
     ...,
     author->,
@@ -44,13 +41,13 @@ async function page({ params: { slug } }: Props) {
     post = await client.fetch(query, { slug })
 
 
-    console.log("posts are", post);
+     console.log("posts are" , post);
 
 
     return (
         <div>
             <div className="max-w-2xl  mx-auto p-2 mt-10">
-                {
+            {
                     post && post.length > 0 && post.some((p: any) => p.topics.length > 0) ?
                         <div className="flex flex-col space-y-2 p-2">
                             {
@@ -61,7 +58,7 @@ async function page({ params: { slug } }: Props) {
                                             key={`${index}-${idx}`}
                                             title={topic.posts[0].title}
                                             date={topic.posts[0]._createdAt}
-                                            slug={`topics/c/${topic.posts[0].slug.current}`}
+                                            slug={`topics/android/${topic.posts[0].slug.current}`}
                                             description={topic.posts[0].description}
                                         />
                                     ))

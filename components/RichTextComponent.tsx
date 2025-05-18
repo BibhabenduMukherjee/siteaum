@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Code from "./Code"
 import { urlFor } from '@/lib/urlFor'
 import { TableRoww } from './TableRow'
-import { Table } from './ui/table'
+import { Table, TableBody, TableHead, TableHeader, TableRow } from './ui/table'
 import { CopyIcon } from 'lucide-react'
 import { CopyCom } from './CopyCom'
 
@@ -44,20 +44,33 @@ export const RichTextComponents = {
     code: ({ value }: any) => {
       const { code, filename, language } = value;
       return (
-        <div className='mt-4 max-w-5xl mx-auto'>
+        <div className='mt-4 max-w-5xl mx-auto mb-4'>
           <CopyCom code={code} />
           <Code code={code} filename={filename} language={language} />
         </div>
       );
     },
     sizeChart: ({ value }: any) => {
+      const isHeaderRow = value?.rows?.length && value.rows[0].isHeader; // Optional
+    
       return (
-        <Table className='bg-blue-400/25 mt-16 rounded-md max-w-5xl mx-auto'>
-          {value.rows.map((row: any, index: number) => (
-            <TableRoww key={index} row={row} />
-          ))}
+        <Table className="m-4 max-w-5xl mx-auto border border-gray-300 shadow-sm rounded-md overflow-hidden">
+          <TableHeader>
+            <TableRow>
+              {value.rows[0].cells.map((cell: string, i: number) => (
+                <TableHead key={i} className="font-semibold px-4 py-3 border border-gray-300">
+                  {cell}
+                </TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {value.rows.slice(1).map((row: any, index: number) => (
+              <TableRoww key={index} row={row} />
+            ))}
+          </TableBody>
         </Table>
-      )
+      );
     },
     callout: ({ value }: any) => {
       return (
@@ -71,7 +84,7 @@ export const RichTextComponents = {
   list: {
     bullet: ({ children }: any) => (
       <div className="max-w-5xl mx-auto">
-        <ul className='ml-4 md:ml-8 dark:text-white/80 selection:bg-yellow-300 dark:selection:bg-blue-500 text-black/70 py-1 list-disc text-[15px] md:text-[17px] space-y-2'>
+        <ul className='ml-4 md:ml-8 dark:text-white/80 selection:bg-yellow-300 dark:selection:bg-blue-500 text-black/70 py-1 list-disc text-[15px] md:text-[17px] '>
           {children}
         </ul>
       </div>
@@ -82,10 +95,10 @@ export const RichTextComponents = {
   },
   block: {
     h1: ({ children }: any) => (
-      <h1 className="text-4xl dark:text-yellow-300 selection:bg-yellow-300 dark:selection:bg-blue-500 py-2 font-bold max-w-5xl mx-auto">{children}</h1>
+      <h1 className="text-4xl dark:text-yellow-300 selection:bg-yellow-300 dark:selection:bg-blue-500 py-1 font-bold max-w-5xl mx-auto">{children}</h1>
     ),
     h2: ({ children }: any) => (
-      <h2 className="text-3xl dark:text-yellow-300 selection:bg-yellow-300 dark:selection:bg-blue-500 py-2 font-bold max-w-5xl mx-auto">{children}</h2>
+      <h2 className="text-3xl dark:text-yellow-300 selection:bg-yellow-300 dark:selection:bg-blue-500 py-1  font-bold max-w-5xl mx-auto">{children}</h2>
     ),
     h3: ({ children }: any) => (
       <h3 className="text-black dark:text-yellow-400/85 text-2xl  font-bold selection:bg-yellow-300 dark:selection:bg-blue-500 max-w-5xl mx-auto">{children}</h3>
@@ -104,18 +117,40 @@ export const RichTextComponents = {
       </div>
     ),
     normal: ({ children }: any) => (
-      <p className='selection:bg-yellow-300 dark:selection:bg-blue-500 dark:text-white/80 text-black/70 text-[15px] md:text-[18px] leading-7 text-justify max-w-5xl mx-auto mb-6'>{children}</p>
-    ),
+      <p className='selection:bg-yellow-300 dark:selection:bg-blue-500 dark:text-white/80 text-black/70 text-[15px] md:text-[18px] leading-7 text-justify max-w-5xl mx-auto mb-4'>
+        {
+          // Manually replace '\n' with <br />
+          children.map((child: any, index: number) => 
+            typeof child === 'string' 
+              ? child.split('\n').map((line, i) => (
+                  <React.Fragment key={`${index}-${i}`}>
+                    {line}
+                    {i < child.split('\n').length - 1 && <br />}
+                  </React.Fragment>
+                ))
+              : child
+          )
+        }
+      </p>
+    )
+,    
     blockquote: ({ children }: any) => (
       <blockquote className='border-l-[#F7AB0A] selection:bg-yellow-300 dark:selection:bg-blue-500 text-lg border-l-4 pl-5 py-2 my-5 max-w-5xl mx-auto'>"{children}"</blockquote>
     )
   },
   marks: {
     link: ({ children, value }: any) => {
-      const rel = !value.href.startsWith("/") ? "noreferrer noopener" : undefined
+      const rel = !value.href.startsWith("/") ? "noreferrer noopener" : undefined;
       return (
-        <Link href={value.href} rel={rel} className="underline decoration-[#F7AB0A] hover:decoration-black max-w-5xl mx-auto">{children}</Link>
-      )
+        <Link
+          href={value.href}
+          rel={rel}
+          className=" underline underline-offset-4 decoration-blue-400 hover:decoration-blue-800 transition duration-200 ease-in-out font-medium"
+        >
+          {children}
+        </Link>
+      );
     }
   }
+  
 }

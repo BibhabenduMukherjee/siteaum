@@ -6,21 +6,22 @@ import { groq } from "next-sanity";
 export default async function Page() {
     async function getPosts() {
         const query = groq`
-       *[_type == "chapter" && chapterTopic == "c"] | order(_createdAt desc) {
+        *[_type == "chapter" && chapterTopic == "android"] | order(_createdAt desc) {
         ...,
-        topics[topicName == "c"]{
+        topics[topicName == "android"]{
        posts[]-> {
        ...,
        author->,
       "image": author->image.asset->url
     }
   }
-}`
+}
+        `
         const chapterwiseposts = await client.fetch(query)
         return chapterwiseposts
     }
     let a = [];
-     a = await getPosts();
+    a = await getPosts();
     
     //console.log(a);
     return (
@@ -30,7 +31,7 @@ export default async function Page() {
                     <div className="flex   flex-col space-y-2 p-2">
                         {
                             a.map((i: any) => (
-                                <PostItem key={i} title={i.chapterName} date={i._createdAt} slug={`topics/c/chapter/${i.chapterNumber}`} chapterNumber = {i.chapterNumber} description= {`Level -- ${i.level}`} />
+                                <PostItem key={i} title={i.chapterName} date={i._createdAt} slug={`topics/android/chapter/${i.chapterNumber}`} chapterNumber = {i.chapterNumber} description= {`Level -- ${i.level}`} />
 
                             ))
 

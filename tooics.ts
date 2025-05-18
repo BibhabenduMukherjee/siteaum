@@ -1,29 +1,29 @@
 export   const topics = [
     {
-      invoice: "C",
+      title: "C",
       url: "/topics/c",
-      totalAmount: "View",
+      view: "View",
       published : true
      
     },
     {
-      invoice: "C++ STL",
+      title: "C++ STL",
       url: "/topics/cpp_stl",
-      totalAmount: "View",
+      view: "View",
       published : false
      
     },
     {
-      invoice: "Computer Network",
-      url: "/topics/cn",
-      totalAmount: "View",
-      published : false
+      title: "Android",
+      url: "/topics/android",
+      view: "View",
+      published : true
      
     },
     {
-      invoice: "OS Principle",
+      title: "OS Principle",
       url: "/topics/os",
-      totalAmount: "View",
+      view: "View",
       published : false
      
     },
