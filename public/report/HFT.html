@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Anatomy of Speed: High-Frequency Trading Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #EBF5FF;
+            color: #002A5C;
+        }
+        .chart-container {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            width: 100%;
+            max-width: 600px;
+        }
+        @media (min-width: 640px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #007BFF;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .flow-card {
+            border: 2px solid #A8D5FF;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            color: #004AAD;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-4">The Anatomy of Speed</h1>
+            <p class="text-xl md:text-2xl font-light text-[#007BFF]">Deconstructing High-Frequency Trading Systems</p>
+        </header>
+
+        <section class="my-12 md:my-16">
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="card p-6">
+                    <div class="text-5xl font-black text-[#007BFF]">1,000,000+</div>
+                    <div class="mt-2 text-lg font-medium text-[#004AAD]">Trades Per Second</div>
+                    <p class="mt-2 text-sm text-gray-600">HFT systems execute massive volumes of trades to capitalize on minuscule price differences.</p>
+                </div>
+                <div class="card p-6">
+                    <div class="text-5xl font-black text-[#007BFF]">&lt; 1 µs</div>
+                    <div class="mt-2 text-lg font-medium text-[#004AAD]">Tick-to-Trade Latency</div>
+                    <p class="mt-2 text-sm text-gray-600">The time from receiving market data to sending an order, often measured in nanoseconds.</p>
+                </div>
+                 <div class="card p-6">
+                    <div class="text-5xl font-black text-[#007BFF]">0.01$</div>
+                    <div class="mt-2 text-lg font-medium text-[#004AAD]">Profit Per Share</div>
+                    <p class="mt-2 text-sm text-gray-600">Individual trades yield tiny profits, but high volume leads to substantial gains.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12 md:my-20">
+            <h2 class="text-3xl font-bold text-center mb-10">The HFT Pipeline: A Nanosecond Race</h2>
+            <div class="text-center mb-8 max-w-3xl mx-auto">
+                <p class="text-lg">High-Frequency Trading is a sequential race against time, where each component shaves off precious nanoseconds. The following diagram illustrates the complete, end-to-end flow of an HFT system, from the moment market data arrives to the final execution of a trade. This entire process occurs faster than the blink of an eye.</p>
+            </div>
+
+            <div class="flex flex-col items-center space-y-4">
+                <div class="w-full max-w-md card flow-card">
+                    <div class="font-bold text-xl mb-2">1. Market Data Ingestion</div>
+                    <p class="text-sm">Multicast feeds from exchanges are processed by ultra-low latency NICs, bypassing the OS kernel to minimize delay.</p>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="w-full max-w-md card flow-card">
+                    <div class="font-bold text-xl mb-2">2. In-Memory Order Book</div>
+                    <p class="text-sm">The system builds and maintains a live snapshot of all buy/sell orders in RAM, avoiding slow disk access.</p>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="w-full max-w-lg card flow-card">
+                     <div class="font-bold text-xl mb-2">3. Decision Making</div>
+                     <p class="text-sm mb-4">The core logic evaluates the market state to find opportunities.</p>
+                     <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+                        <div class="border border-[#A8D5FF] p-3 rounded-lg flex-1">
+                            <h4 class="font-semibold text-[#004AAD]">FPGA Acceleration</h4>
+                            <p class="text-xs">Hardware logic for sub-microsecond tick-to-trade decisions.</p>
+                        </div>
+                        <div class="border border-[#A8D5FF] p-3 rounded-lg flex-1">
+                            <h4 class="font-semibold text-[#004AAD]">Software Strategy Engine</h4>
+                            <p class="text-xs">Complex algorithms for market-making and statistical analysis.</p>
+                        </div>
+                     </div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="w-full max-w-md card flow-card">
+                    <div class="font-bold text-xl mb-2">4. Pre-Trade Risk Checks</div>
+                    <p class="text-sm">Automated safety gates validate every order in microseconds to prevent catastrophic errors.</p>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="w-full max-w-md card flow-card">
+                    <div class="font-bold text-xl mb-2">5. Smart Order Routing</div>
+                    <p class="text-sm">An intelligent router selects the optimal exchange for execution based on latency, cost, and fill probability.</p>
+                </div>
+                 <div class="flow-arrow">&#8595;</div>
+                <div class="w-full max-w-md card flow-card">
+                    <div class="font-bold text-xl mb-2">6. Execution & Post-Trade</div>
+                    <p class="text-sm">The trade is executed, and all data is logged by the Order Management System for analysis and compliance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12 md:my-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Core Technology Deep Dive</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-4">FPGA vs. CPU: The Speed Advantage</h3>
+                    <p class="mb-4 text-gray-700">Field-Programmable Gate Arrays (FPGAs) are reconfigurable hardware chips that execute logic directly in silicon, bypassing the overhead of a CPU and operating system. This bar chart illustrates the dramatic latency reduction achieved by FPGAs for simple trading decisions.</p>
+                    <div class="chart-container">
+                        <canvas id="fpgaChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card" >
+                    <h3 class="text-2xl font-bold mb-4">HFT Technology Stack Composition</h3>
+                     <p class="mb-4 text-gray-700">A successful HFT system is a blend of specialized hardware, optimized software, and low-level network programming. This chart shows a conceptual breakdown of where engineering effort and value is concentrated within the technology stack.</p>
+                    <div class="chart-container">
+                        <canvas id="techStackChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4">Latency Budget: Where Every Nanosecond Goes</h3>
+                     <p class="mb-4 text-gray-700">In HFT, performance is measured by the "latency budget"—the time allocated to each step in the trading pipeline. This chart shows a typical distribution of latency, highlighting how network travel time and software processing are the most significant contributors.</p>
+                    <div class="chart-container">
+                        <canvas id="latencyBudgetChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-sm text-gray-500 mt-16 pb-8">
+            <p>Infographic created based on HFT system architecture analysis.</p>
+            <p>All diagrams and charts are rendered By @codeaum server</p>
+        </footer>
+    </div>
+
+    <script>
+        const brilliantBlues = {
+            deep: '#004AAD',
+            bright: '#007BFF',
+            light: '#52A9FF',
+            veryLight: '#A8D5FF',
+            background: '#EBF5FF'
+        };
+
+        const chartTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: brilliantBlues.deep,
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            }
+        };
+
+        function wrapLabel(label, maxLength = 14) {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const fpgaCtx = document.getElementById('fpgaChart').getContext('2d');
+        new Chart(fpgaCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Standard CPU', 'Optimized CPU', 'FPGA Hardware'],
+                datasets: [{
+                    label: 'Decision Latency (Nanoseconds)',
+                    data: [15000, 3000, 400],
+                    backgroundColor: [brilliantBlues.light, brilliantBlues.bright, brilliantBlues.deep],
+                    borderColor: brilliantBlues.deep,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...chartTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Latency (ns) - Log Scale',
+                            color: brilliantBlues.deep
+                        },
+                        ticks: { color: brilliantBlues.deep }
+                    },
+                    x: {
+                        ticks: { color: brilliantBlues.deep }
+                    }
+                }
+            }
+        });
+
+        // Custom plugin to draw percentage labels on doughnut charts
+        const doughnutPercentageLabels = {
+            id: 'doughnutPercentageLabels',
+            afterDatasetsDraw(chart, args, options) {
+                const { ctx, data, chartArea: { width, height } } = chart;
+                ctx.save();
+                
+                const total = data.datasets[0].data.reduce((sum, value) => sum + value, 0);
+
+                data.datasets[0].data.forEach((datapoint, index) => {
+                    const { x, y, innerRadius, outerRadius, startAngle, endAngle } = chart.getDatasetMeta(0).data[index];
+                    const angle = (startAngle + endAngle) / 2;
+                    const radius = (innerRadius + outerRadius) / 2;
+
+                    const textX = x + Math.sin(angle) * radius;
+                    const textY = y - Math.cos(angle) * radius;
+
+                    const percentage = parseFloat(((datapoint / total) * 100).toFixed(1));
+
+                    ctx.fillStyle = brilliantBlues.deep; // Adjust text color as needed
+                    ctx.font = 'bold 14px Inter, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(`${percentage}%`, textX, textY);
+                });
+
+                ctx.restore();
+            }
+        };
+
+        const techStackCtx = document.getElementById('techStackChart').getContext('2d');
+        const rawTechLabels = ['Hardware Acceleration (FPGAs)', '(Kernel Bypass)', "Quantative Models & Strategy", "High-Performance Software"];
+        new Chart(techStackCtx, {
+            type: 'doughnut',
+            data: {
+                labels: rawTechLabels,
+                datasets: [{
+                    label: 'Effort Distribution',
+                    data: [35, 25, 25, 15],
+                    backgroundColor: [
+                        brilliantBlues.deep,
+                        brilliantBlues.bright,
+                        brilliantBlues.light,
+                        brilliantBlues.veryLight
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+  plugins: {
+    tooltip: {
+      callbacks: {
+        label: function (context) {
+          return `${context.label}: ${context.raw}%`;
+        }
+      }
+    },
+    legend: {
+      labels: {
+        generateLabels: function (chart) {
+          const data = chart.data;
+          if (data.labels.length && data.datasets.length) {
+            return data.labels.map((label, i) => {
+              return {
+                text: label.length > 20 ? label.slice(0, 20) + '…' : label,
+                fillStyle: data.datasets[0].backgroundColor[i],
+                strokeStyle: '#fff',
+                lineWidth: 2,
+                index: i
+              };
+            });
+          }
+          return [];
+        }
+      }
+    }
+  },
+  responsive: true,
+  maintainAspectRatio: false,
+}
+
+        });
+        
+        const latencyBudgetCtx = document.getElementById('latencyBudgetChart').getContext('2d');
+        const rawLatencyLabels = ['Network Path (Fiber)', 'Market Data Decoder', 'Order Book Update', 'FPGA/Strategy Logic', 'Risk & Order Routing'];
+        new Chart(latencyBudgetCtx, {
+            type: 'bar',
+            data: {
+                labels: rawLatencyLabels.map(label => wrapLabel(label)),
+                datasets: [{
+                    label: 'Latency Contribution (ns)',
+                    data: [250, 50, 30, 150, 80],
+                     backgroundColor: [
+                        brilliantBlues.deep,
+                        brilliantBlues.bright,
+                        brilliantBlues.light,
+                        brilliantBlues.deep,
+                        brilliantBlues.bright,
+                    ],
+                }]
+            },
+            options: {
+                ...chartTooltipOptions,
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                     x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Time (Nanoseconds)',
+                            color: brilliantBlues.deep
+                        },
+                        ticks: { color: brilliantBlues.deep }
+                    },
+                    y: {
+                        ticks: { color: brilliantBlues.deep }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
