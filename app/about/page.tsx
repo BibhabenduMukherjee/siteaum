@@ -31,6 +31,10 @@ export default async function AboutPage() {
           <p className="text-muted-foreground text-center break-words">
             Software Developer
           </p>
+          <div className="flex items-center">
+            <button   className="w-[120px] h-[40px] ml-9 p-2 rounded-sm font-semibold text-white bg-blue-700">
+              <a href="/myself.html">Go to Profile</a></button>
+          </div>
         </div>
         <p className="text-muted-foreground text-lg py-4">
         <span className="dark:text-orange-400 text-blue-700 text-lg">"This above all: to thine own self be true."  William Shakespeare</span> 
