@@ -33,7 +33,7 @@ export default async function AboutPage() {
           </p>
           <div className="flex items-center">
             <button   className="w-[120px] h-[40px] ml-9 p-2 rounded-sm font-semibold text-white bg-blue-700">
-              <a href="/myself.html">Go to Profile</a></button>
+              <a href="/myself">Go to Profile</a></button>
           </div>
         </div>
         <p className="text-muted-foreground text-lg py-4">

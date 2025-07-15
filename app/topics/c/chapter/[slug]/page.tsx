@@ -42,7 +42,7 @@ async function page({ params: { slug } }: Props) {
     post = await client.fetch(query, { slug })
 
 
-     console.log("posts are" , post[0]?.topics[0].posts[0].slug);
+     console.log("posts are" , post);
 
 
     return (

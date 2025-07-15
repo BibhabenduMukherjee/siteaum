@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/report/HFT", "destination": "/report/HFT.html" },
+    { "source": "/myself", "destination": "/myself.html" }
+  ]
+}

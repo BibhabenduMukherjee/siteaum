@@ -77,16 +77,6 @@ export function MainNav() {
       >
         Books
       </Link> */}
-
-      <Link
-       href="https://contact.codeaum.in"
-        className={cn(
-          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
-          pathname === "/contact.codeaum.in" ? "text-foreground" : "text-foreground/60"
-        )}
-      >
-       Share ideas
-      </Link>
     </nav>
   );
 }

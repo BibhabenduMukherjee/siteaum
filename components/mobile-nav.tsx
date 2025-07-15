@@ -53,11 +53,6 @@ export function MobileNav() {
           {/* <Link target="_blank" rel="noreferrer" href={"/book"}>
           Books
           </Link> */}
-
-          <Link target="_blank" rel="noreferrer" href="https://contact.codeaum.in">
-          Share ideas
-          </Link>
-
           
         </div>
       </SheetContent>

@@ -7,6 +7,7 @@ import { PostItem } from "@/components/post-item";
 
 import A from "@/components/A";
 import Myimage from "@/components/MyImage";
+import { Chatbot } from "@/components/chatbot";
 export default function Home() {
   const latestPosts = sortPosts(posts).slice(0, 5);
   return (
@@ -66,6 +67,8 @@ export default function Home() {
           ))}
         </ul>
       </section>
+
+       <Chatbot />
     </>
   );
 }
