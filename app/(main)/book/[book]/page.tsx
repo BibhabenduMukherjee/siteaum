@@ -1,11 +1,11 @@
 import { client } from "@/lib/clientsanity";
 import { groq } from "next-sanity";
 import dynamic from "next/dynamic";
-const BookContent = dynamic(() => import("../../../components/BookContent"), {
+const BookContent = dynamic(() => import("../../../../components/BookContent"), {
   ssr: false,
 });
 
-const BookAbstract = dynamic(() => import("../../../components/BookAbstract"), {
+const BookAbstract = dynamic(() => import("../../../../components/BookAbstract"), {
     ssr: false,
   });
 

@@ -1,7 +1,7 @@
 import { client } from "@/lib/clientsanity"
 import { groq } from "next-sanity"
 import Link from "next/link"
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "../../components/ui/select"
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "../../../components/ui/select"
 
 import dynamic from "next/dynamic"
 const CategoryFilter = dynamic(()=> import("@/components/CategoryFilter"),{ssr:false})
