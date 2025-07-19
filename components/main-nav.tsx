@@ -68,6 +68,17 @@ export function MainNav() {
         Advanced
       </Link>
 
+
+      <Link
+        href="/report"
+        className={cn(
+          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
+          pathname === "/report" ? "text-foreground" : "text-foreground/60"
+        )}
+      >
+        Reports
+      </Link>
+
       {/* <Link
         href="/book"
         className={cn(

@@ -4,8 +4,10 @@
 
 
 
+
 html {
   scroll-behavior: smooth;
+  
 }
 ::-webkit-scrollbar {
   width: 0px; /* Adjust the width */
@@ -17,7 +19,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Lighter background */
+  background: hsl(0, 0%, 95%); /* Lighter background */
 }
 
 .image-slider{

@@ -50,6 +50,9 @@ export function MobileNav() {
           <Link target="_blank" rel="noreferrer" href={"/advanced"}>
           Advanced
           </Link>
+          <Link target="_blank" rel="noreferrer" href={"/report"}>
+          Reports 
+          </Link>
           {/* <Link target="_blank" rel="noreferrer" href={"/book"}>
           Books
           </Link> */}

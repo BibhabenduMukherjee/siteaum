@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Bitter} from "next/font/google";
 import { Roboto } from 'next/font/google'
-import "./globals.css";
+import "../(main)/globals.css";
 import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/site-header";
+import 'highlight.js/styles/github-dark.css';
+
 import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";

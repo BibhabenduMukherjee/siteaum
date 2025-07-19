@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+html {
+  scroll-behavior: smooth;
+  
+}
+::-webkit-scrollbar {
+  width: 0px; /* Adjust the width */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0; /* Change color */
+  border-radius: 10px; /* Smooth edges */
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 95%); /* Lighter background */
+}
+
+.image-slider{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  animation: moving 14s linear infinite;
+}
+
+@keyframes moving {
+   0%{
+    transform: perspective(1000px) rotateY(0deg);
+   }
+
+   100%{
+    transform: perspective(1000px) rotateY(360deg);
+   }
+}
+
+.image-slider span {
+  position : absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transition-property: rotateY(45deg) translateZ(350px) ;
+}
+
+.image-slider span img{
+  position:absolute;
+  top: 0;
+  left: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: 2s;
+
+}
+
+/* Default styles */
+/* Default styles */
+.moving-div {
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  position: relative;
+  top: 0;
+  animation: move 4s linear infinite;
+}
+
+/* Keyframes animation */
+@keyframes move {
+  0%, 100% {
+    top: 0; /* Starting position */
+  }
+  50% {
+    top: 100px; /* Move down */
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .moving-div {
+    animation: move-small-screen 4s linear infinite;
+  }
+
+  @keyframes move-small-screen {
+    0%, 100% {
+      top: 0; /* Starting position */
+    }
+    50% {
+      top: -100px; /* Move up */
+    }
+  }
+}
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+.scroll-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.scroll-content {
+  display: flex;
+  animation: scroll 10s linear infinite;
+  white-space: nowrap;
+}
+
+.scroll-content span {
+  display: inline-block;
+  padding: 0 40px;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
